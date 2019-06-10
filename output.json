@@ -1,0 +1,91 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "women world cup updates",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "playerBio",
+                    "slots": [
+                        {
+                            "name": "player",
+                            "type": "playerNames"
+                        }
+                    ],
+                    "samples": [
+                        "who is {player}",
+                        "{player}",
+                        "tell me about {player}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "todaySchedule",
+                    "slots": [],
+                    "samples": [
+                        "game schedule",
+                        "today's schedule",
+                        "who's playing today",
+                        "what game is on today",
+                        "tell me abou the world cup",
+                        "tell me today's schedule",
+                        "what is today's schedule"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "playerNames",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Garry Kasparov"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Jose Raul Capablanca"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Mikhail Tal"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Bobby fisher"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
