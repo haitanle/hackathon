@@ -53,7 +53,7 @@ To run, create an Alexa skill, then copy the `output.json` file into the alexa d
 
 Then, create a lambda function in AWS. Copy all files inside 'alexa-voice-fifa' directory to the function code. 'Save' the code. 
 
-Connect the Alexa Skill to the lambda function. 
+Connect the Alexa Skill to the lambda function..
 
 
 
