@@ -53,19 +53,19 @@ def intent_scheme(event):
 #---------------------------Part3.1.1-------------------------------
 # Here we define the intent handler functions
 def game_schedule():
-    more_MSG = app.getTodaySchedule()
-    more_MSG += "Would you like to hear today's history?"
+    todaySchedule = app.getTodaySchedule()
+    more_MSG = todaySchedule + "Would you like to hear today's history?"
     reprompt_MSG = "Do you want to hear more history?"
-    card_TEXT = "You've asked for help."
-    card_TITLE = "Help"
+    card_TEXT = todaySchedule
+    card_TITLE = "Today's game schedule"
     return output_json_builder_with_reprompt_and_card(more_MSG, card_TEXT, card_TITLE, reprompt_MSG, False)
 
 
 def more_history():
-    more_MSG = app.getMoreHistory()
-    more_MSG += "Would you like to hear more history?"
+    todayHistory = app.getMoreHistory()
+    more_MSG = todayHistory + "Would you like to hear more history?"
     reprompt_MSG = "Do you want to hear more history?"
-    card_TEXT = app.getMoreHistory()
+    card_TEXT = todayHistory
     card_TITLE = "Today's Women WC history"
     return output_json_builder_with_reprompt_and_card(more_MSG, card_TEXT, card_TITLE, reprompt_MSG, False)
 
@@ -73,8 +73,8 @@ def more_history():
 def stop_the_skill(event):
     stop_MSG = "Enjoy the World Cup. Good bye."
     reprompt_MSG = ""
-    card_TEXT = "Bye."
-    card_TITLE = "Bye Bye."
+    card_TEXT = "Enjoy the World Cup. Good bye."
+    card_TITLE = "Exit skill"
     return output_json_builder_with_reprompt_and_card(stop_MSG, card_TEXT, card_TITLE, reprompt_MSG, True)
     
 def assistance(event):

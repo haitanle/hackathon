@@ -28,7 +28,7 @@ Timezone is currently hard-coded as 'America/New York'
 
 ### Option 1) 
 
-Find and enable the "Women World Cup Update and History" skill from Alexa store on mobile or Amazon Alexa devices. 
+Find and enable the "Women World Cup Update and History" skill from Alexa store on mobile or Amazon Alexa devices. [link to Skill store](https://skills-store.amazon.com/deeplink/dp/B07SVWXJ6H?deviceType=app&share&refSuffix=ss_copy)
 
 ![Alexa skill](/img/alexa-skill.png)
 
