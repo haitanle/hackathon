@@ -1,9 +1,10 @@
 # import requests
 import json
+from datetime import datetime
 import util
 from MatchDay import MatchDay
 
-
+#timezone global variable - 
 
 def getGameData(day, gameData):
     """get WC gameData from https://givevoicetofootball.fifa.com/api/v1/calendar/matches?idSeason=278513&idCompetition=103
@@ -84,6 +85,7 @@ def day_ofCompetition(date,matchDaysList): #could stored in MatchDay object or r
     input: (list) matchDaysList
     return: (string) number of date of total
     """
+
     return (matchDaysList.index(date)+1, (len(matchDaysList)+2))
 
 
@@ -110,8 +112,11 @@ def gameDayDescription(date):
 
     iDay = day_ofCompetition(date,data)[0]
 
-    output = "Today is day %s of %s of the Women's World cup in France. \n"\
-    % (day_ofCompetition(date, data))
+    dateOut = datetime.strptime(date, '%Y-%m-%d').strftime('%A, %B %d')
+    day, ofTotal = day_ofCompetition(date, data)
+
+    output = "Today %s is day %s of %s of the Women's World cup in France. \n"\
+    % (dateOut, day, ofTotal)
 
 
     dayNumber = (day_ofCompetition(date, data))[0]

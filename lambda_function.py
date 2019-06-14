@@ -21,11 +21,11 @@ def on_start():
     print("Session Started.")
 
 def on_launch(event):
-    onlunch_MSG = app.runApp()
-    onlunch_MSG += " Would you like to hear more history?"
+    launch_message = app.runApp()
+    onlunch_MSG =  launch_message + " Would you like to hear more history?"
     reprompt_MSG = "Would you like to hear more history?"
-    card_TEXT = ""
-    card_TITLE = ""
+    card_TEXT = launch_message
+    card_TITLE = "Today's Game Schedule"
     return output_json_builder_with_reprompt_and_card(onlunch_MSG, card_TEXT, card_TITLE, reprompt_MSG, False)
 
 def on_end():
