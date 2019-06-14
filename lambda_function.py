@@ -1,5 +1,6 @@
 import application as service
 import app 
+from botocore.vendored import requests
 
 # Here we define our Lambda function and configure what it does when 
 # an event with a Launch, Intent and Session End Requests are sent. # The Lambda function responses to an event carrying a particular 
@@ -10,6 +11,26 @@ def lambda_handler(event, context):
     if event['session']['new']:
         on_start()
     if event['request']['type'] == "LaunchRequest":
+
+        apiAccessToken = event['context']['System']['apiAccessToken']
+        print("***** Acess token %s" % apiAccessToken)
+
+        deviceId = event['context']['System']['device']['deviceId']
+        print("****** Device Id %s " % deviceId)
+
+        url = "https://api.amazonalexa.com/v2/devices/\
+%s/settings/System.timeZone" % deviceId
+
+        bearerToken = 'Bearer %s' % apiAccessToken
+        headers = {'Authorization': bearerToken}
+
+        r = requests.get(url, headers=headers)
+        global timeZone
+        timeZone = r.json()
+        r.close()
+
+        print(timeZone)
+
         return on_launch(event)
     elif event['request']['type'] == "IntentRequest":
         return intent_scheme(event)
