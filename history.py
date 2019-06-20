@@ -61,15 +61,17 @@ def getStartIndexFrom(ithDay,matchList):
     matchDateList = []
 
     index = -1
-
-    while True:
-        index += 1
-        matchDate = matchList[index]['LocalDate'].split('T')[0]
-        if matchDate not in matchDateList:
-            matchDateList.append(matchDate)
-        if len(matchDateList) == ithDay:
-            # print (matchDateList, index)
-            return index
+    try: 
+        while True:
+            index += 1
+            matchDate = matchList[index]['LocalDate'].split('T')[0]
+            if matchDate not in matchDateList:
+                matchDateList.append(matchDate)
+            if len(matchDateList) == ithDay:
+                # print (matchDateList, index)
+                return index
+    except IndexError:
+        return 13 # catch-all for tournaments that last for more than 14 days
 
 
 def getPastSeason(dayNumber):
@@ -128,4 +130,4 @@ idSeason=%s&idCompetition=103'%seasonId
 
 
 
-#print(getPastSeason(2))
+#print(getPastSeason(16))
