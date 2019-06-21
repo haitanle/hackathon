@@ -85,8 +85,10 @@ def day_ofCompetition(date,matchDaysList): #could stored in MatchDay object or r
     input: (list) matchDaysList
     return: (string) number of date of total
     """
-
-    return (matchDaysList.index(date)+1, (len(matchDaysList)+2))
+    try: 
+        return (matchDaysList.index(date)+1, (len(matchDaysList)+2))
+    except ValueError:
+        return (13,0)
 
 
 
@@ -115,8 +117,12 @@ def gameDayDescription(date):
     dateOut = datetime.strptime(date, '%Y-%m-%d').strftime('%A, %B %d')
     day, ofTotal = day_ofCompetition(date, data)
 
-    output = "Today %s is day %s of %s of the Women's World cup in France. \n"\
-    % (dateOut, day, ofTotal)
+    if ofTotal == 0:
+        output = "Today %s, there is no game scheduled. " % dateOut
+        return output, iDay
+    else:
+        output = "Today %s is day %s of %s of the Women's World cup in France. \n"\
+        % (dateOut, day, ofTotal)
 
 
     dayNumber = (day_ofCompetition(date, data))[0]
@@ -133,7 +139,7 @@ def gameDayDescription(date):
 
 
 
-#print(gameDayDescription('2019-06-07'))
+# print(gameDayDescription('2019-06-21'))
 
 
 # print("day number outside %s" % dayNumber)
