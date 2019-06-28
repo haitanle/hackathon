@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 import util
 from MatchDay import MatchDay
+from botocore.vendored import requests
 
 #timezone global variable - 
 
@@ -91,9 +92,13 @@ def day_ofCompetition(date,matchDaysList): #could stored in MatchDay object or r
         return (13,0)
 
 
+apiURL = "https://givevoicetofootball.fifa.com/api/v1/calendar/matches?idSeason=278513&idCompetition=103"
+r = requests.get(apiURL)
+gameData = r.json()
+r.close()
 
-with open('match_data.txt', 'r') as f:
-    gameData = json.load(f)
+# with open('match_data.txt', 'r') as f:
+#     gameData = json.load(f)
 
 
 #test of creating json file
