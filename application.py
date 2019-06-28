@@ -1,7 +1,7 @@
 # import requests
 import json
 from datetime import datetime
-import util
+from util import convertUTCtoLocal
 from MatchDay import MatchDay
 from botocore.vendored import requests
 
@@ -24,6 +24,7 @@ def getGameData(day, gameData):
                 homeTeam = 'knockout stage team 1'
                 awayTeam = 'knockout stage team 2'
 
+            stageName = gameData['Results'][gameIndex]['StageName'][0]['Description']
             stadium = gameData['Results'][gameIndex]['Stadium']['Name'][0]['Description']
             city = gameData['Results'][gameIndex]['Stadium']['CityName'][0]['Description']
             country = 'France'
@@ -31,8 +32,8 @@ def getGameData(day, gameData):
             localTime = util.convertUTCtoLocal(gameData['Results'][gameIndex]['Date'])
             localTime = localTime.split('T')[1]
 
-            dayDescription += ("%s plays %s at %s in %s stadium in %s.\n" \
-            %(homeTeam, awayTeam, localTime, stadium, city))
+            dayDescription += ("%s plays %s in the %s at %s in %s stadium in %s.\n" \
+            %(homeTeam, awayTeam, stageName, localTime, stadium, city))
 
 
     return dayDescription
@@ -144,7 +145,7 @@ def gameDayDescription(date):
 
 
 
-# print(gameDayDescription('2019-06-21'))
+# print(gameDayDescription('2019-06-28'))
 
 
 # print("day number outside %s" % dayNumber)
