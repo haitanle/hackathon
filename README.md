@@ -37,7 +37,7 @@ Find and enable the "Women World Cup Update and History" skill from Alexa store 
 Sign in at `https://developer.amazon.com/alexa`
 
 email: haitansle@gmail.com
-password: FifaWWCTest
+password: <FIFA.....>
 
 Select `Alexa` tab, then `Alex Skill Set`
 
