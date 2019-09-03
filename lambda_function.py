@@ -1,36 +1,7 @@
-import application as service
-import app 
-from botocore.vendored import requests
-
-# Here we define our Lambda function and configure what it does when 
-# an event with a Launch, Intent and Session End Requests are sent. # The Lambda function responses to an event carrying a particular 
-# Request are handled by functions such as on_launch(event) and 
-# intent_scheme(event).
-
 def lambda_handler(event, context):
     if event['session']['new']:
         on_start()
     if event['request']['type'] == "LaunchRequest":
-
-        apiAccessToken = event['context']['System']['apiAccessToken']
-        print("***** Acess token %s" % apiAccessToken)
-
-        deviceId = event['context']['System']['device']['deviceId']
-        print("****** Device Id %s " % deviceId)
-
-        url = "https://api.amazonalexa.com/v2/devices/\
-%s/settings/System.timeZone" % deviceId
-
-        bearerToken = 'Bearer %s' % apiAccessToken
-        headers = {'Authorization': bearerToken}
-
-        r = requests.get(url, headers=headers)
-        global timeZone
-        timeZone = r.json()
-        r.close()
-
-        print(timeZone)
-
         return on_launch(event)
     elif event['request']['type'] == "IntentRequest":
         return intent_scheme(event)
@@ -42,12 +13,7 @@ def on_start():
     print("Session Started.")
 
 def on_launch(event):
-    launch_message = app.runApp()
-    onlunch_MSG =  launch_message + " Would you like to hear more history?"
-    reprompt_MSG = "Would you like to hear more history?"
-    card_TEXT = launch_message
-    card_TITLE = "Today's Game Schedule"
-    return output_json_builder_with_reprompt_and_card(onlunch_MSG, card_TEXT, card_TITLE, reprompt_MSG, False)
+    return output_json_builder_with_reprompt_and_card("hello", "hello", "hello", "hello", False)
 
 def on_end():
     print("Session Ended.")
