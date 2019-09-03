@@ -145,7 +145,7 @@ def gameDayDescription(date):
 
 
 
-# print(gameDayDescription('2019-06-28'))
+# print(gameDayDescription('2019-07-03'))
 
 
 # print("day number outside %s" % dayNumber)
