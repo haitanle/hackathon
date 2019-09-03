@@ -1,3 +1,9 @@
+launch_message = "Today is Friday, June 28 is day 20 of 25 of the Women's World cup in France. Today, France plays USA in the Quarter-final at 03:00PM in Parc des Princes stadium in Paris. Today in history, USA played Nigeria to a score of 7 to 1 in Women's World Cup USA 1999, scored for USA by Mia Hamm, Kristine Lillly, Michelle Akers, Cindy Cone, Tiffeny Milbrett, scored for Nigeria by Nkiru Okosieme . "
+card_title = "Today's Game Schedule"
+output_repromt = " Would you like to hear more history?"
+more_history = "Today in history, Argentina played Japan to a score of 0 to 1 in Women's World Cup China 2007, scored for Japan by Yuki Nagasto. "
+
+
 def lambda_handler(event, context):
     if event['session']['new']:
         on_start()
@@ -13,7 +19,7 @@ def on_start():
     print("Session Started.")
 
 def on_launch(event):
-    return output_json_builder_with_reprompt_and_card("hello", "hello", "hello", "hello", False)
+    return output_json_builder_with_reprompt_and_card(launch_message+output_repromt, launch_message, card_title, output_repromt, False)
 
 def on_end():
     print("Session Ended.")
@@ -26,11 +32,9 @@ def on_end():
 def intent_scheme(event):
     
     intent_name = event['request']['intent']['name']
-
+    
     if intent_name == "AMAZON.YesIntent":
-        return more_history()
-    elif intent_name == "todaySchedule":
-        return game_schedule()
+        return tell_me_more()
     elif intent_name in ["AMAZON.NoIntent", "AMAZON.StopIntent", "AMAZON.CancelIntent"]:
         return stop_the_skill(event)
     elif intent_name == "AMAZON.HelpIntent":
@@ -39,22 +43,17 @@ def intent_scheme(event):
         return fallback_call(event)
 #---------------------------Part3.1.1-------------------------------
 # Here we define the intent handler functions
-def game_schedule():
-    todaySchedule = app.getTodaySchedule()
-    more_MSG = todaySchedule + "Would you like to hear today's history?"
-    reprompt_MSG = "Do you want to hear more history?"
-    card_TEXT = todaySchedule
-    card_TITLE = "Today's game schedule"
-    return output_json_builder_with_reprompt_and_card(more_MSG, card_TEXT, card_TITLE, reprompt_MSG, False)
+# def game_schedule():
+#     todaySchedule = app.getTodaySchedule()
+#     more_MSG = todaySchedule + "Would you like to hear today's history?"
+#     reprompt_MSG = "Do you want to hear more history?"
+#     card_TEXT = todaySchedule
+#     card_TITLE = "Today's game schedule"
+#     return output_json_builder_with_reprompt_and_card(more_MSG, card_TEXT, card_TITLE, reprompt_MSG, False)
 
 
-def more_history():
-    todayHistory = app.getMoreHistory()
-    more_MSG = todayHistory + "Would you like to hear more history?"
-    reprompt_MSG = "Do you want to hear more history?"
-    card_TEXT = todayHistory
-    card_TITLE = "Today's Women WC history"
-    return output_json_builder_with_reprompt_and_card(more_MSG, card_TEXT, card_TITLE, reprompt_MSG, False)
+def tell_me_more():
+    return output_json_builder_with_reprompt_and_card(more_history+output_repromt, more_history, "Today in History", output_repromt, False)
 
 
 def stop_the_skill(event):
